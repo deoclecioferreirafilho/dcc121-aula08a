@@ -18,7 +18,17 @@
     <ul>
 
     </ul>
+
+    <button id="calcula">Calcula Novo/Velho</button>
+
     <script>
+
+        var convidados = [];
+        var lista = document.getElementsByTagName("ul")[0];
+        var saida = document.getElementsByTagName("p")[0];
+        var botaoCalcula = document.querySelector("#calcula");
+
+
        document.forms.convidado.addEventListener("submit",processaEnvio);
 
        function processaEnvio(e)
@@ -29,14 +39,20 @@
            var nome = document.forms.convidado.nome.value;
            var idade = document.forms.convidado.idade.value;
            console.log(nome,idade);
+           var novoConvidado = {"nome": nome, "idade": idade};
+           convidados.push(novoConvidado);
 
            var lista = document.getElementsByTagName("ul")[0];
            var novoLi = document.createElement("li");
-           novoLi.textContent = nome+" de "+idade+" anos ";
+           novoLi.textContent = novoConvidado.nome+" de "+novoConvidado.idade+" anos ";
            lista.appendChild(novoLi);
+
            document.forms.convidado.reset();
            document.forms.convidado.nome.focus();
        }
+
+       function 
+
     </script>
     
 </body>
