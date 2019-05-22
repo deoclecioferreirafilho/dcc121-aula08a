@@ -20,7 +20,7 @@
     </ul>
 
     <button id="calcula">Calcula Novo/Velho</button>
-
+    <p></p>
     <script>
 
         var convidados = [];
@@ -30,6 +30,7 @@
 
 
        document.forms.convidado.addEventListener("submit",processaEnvio);
+       botaoCalcula.addEventListener("click", calculaMaisNovoVelho);
 
        function processaEnvio(e)
        {
@@ -37,12 +38,12 @@
            console.log ("Formulário enviado!");
 
            var nome = document.forms.convidado.nome.value;
-           var idade = document.forms.convidado.idade.value;
+           var idade = Number(document.forms.convidado.idade.value);
            console.log(nome,idade);
            var novoConvidado = {"nome": nome, "idade": idade};
            convidados.push(novoConvidado);
 
-           var lista = document.getElementsByTagName("ul")[0];
+           //var lista = document.getElementsByTagName("ul")[0];
            var novoLi = document.createElement("li");
            novoLi.textContent = novoConvidado.nome+" de "+novoConvidado.idade+" anos ";
            lista.appendChild(novoLi);
@@ -51,7 +52,33 @@
            document.forms.convidado.nome.focus();
        }
 
-       function 
+       function calculaMaisNovoVelho()
+       {
+           var i;
+           if (convidados.length == 0)
+           {
+               saida.textContent = "Não existem convidados cadastrados";
+           }
+           else
+           {
+
+               var novo = convidados[0];
+               var velho = convidados[0];
+               for (var i = 0; i < convidados.length; i++) {
+                   var conv = convidados[i];
+                   if(conv.idade < novo.idade)
+                   {
+                       novo = conv;
+                   }
+                   if(conv.idade > velho.idade)
+                   {
+                       velho=conv;
+                   }
+               }
+           saida.textContent = "O "+novo.nome+" é o mais novo e "+velho.nome+" é o mais velho!";
+           }
+           
+       }
 
     </script>
     
